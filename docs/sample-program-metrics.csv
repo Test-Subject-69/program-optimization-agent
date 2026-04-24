@@ -1,0 +1,7 @@
+program_id,name,partner,state,households_served,households_target,revenue_ytd,budget_ytd,equity_reach_pct,equity_target_pct,schedule_adherence_pct,staffing_capacity_pct,backlog_count,open_roles,compliance_score,data_freshness_hours
+dte-multifamily-efficiency,DTE Multifamily Energy Efficiency,DTE Energy,MI,18420,22000,19200000,18100000,71,68,84,76,1320,11,94,18
+comed-beneficial-electrification,ComEd Beneficial Electrification,ComEd / ICF,IL,9420,12500,11800000,10500000,63,70,78,69,1680,17,91,11
+ira-home-rebates,IRA Home Energy Rebates,CLEAResult / Michigan partners,MI,6120,7200,16100000,15100000,74,72,88,82,760,8,89,32
+dte-efficiency-academy,DTE Energy Efficiency Academy,DTE Energy,MI,520,600,2100000,2050000,88,80,93,86,90,4,96,8
+medium-high-voltage-equipment,Medium and High-Voltage Equipment,Utility and municipal buyers,Multi-state,148,190,9700000,10800000,42,40,72,79,42,6,92,74
+community-impact-programs,Community Impact Programs,City and nonprofit partners,MI,10250,9800,4100000,3900000,91,85,95,88,210,3,97,5

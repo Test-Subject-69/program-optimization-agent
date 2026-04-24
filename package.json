@@ -1,0 +1,29 @@
+{
+  "name": "walker-miller-program-optimization-agent",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Walker-Miller Priority 1 Program Optimization Agent pilot.",
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev-local.mjs",
+    "doctor:local": "node scripts/local-doctor.mjs",
+    "predev:frontend": "node scripts/local-doctor.mjs",
+    "dev:frontend": "npm --workspace frontend run dev",
+    "dev:backend": "npm --workspace backend run dev",
+    "build:frontend": "npm --workspace frontend run build",
+    "start:backend": "npm --workspace backend run start",
+    "test": "node shared/tests/optimization.test.mjs && node shared/tests/foundation.test.mjs && node shared/tests/validation-negative.test.mjs && node shared/tests/kpi-edge-cases.test.mjs && node backend/tests/repository-smoke.test.mjs && node backend/tests/routes-smoke.test.mjs",
+    "check": "npm test"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: walker-miller-program-optimization-api
+    env: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm run start:backend
+    envVars:
+      - key: DATABASE_MODE
+        value: memory
+      - key: FRONTEND_ORIGIN
+        value: https://example.vercel.app
