@@ -19,6 +19,7 @@ import { AiAgentService } from "./services/ai-agent-service.js";
 import { ProgramService } from "./services/program-service.js";
 import { ReportService } from "./services/report-service.js";
 import { authContextMiddleware } from "./utils/auth.js";
+import { corsOrigin } from "./utils/origins.js";
 
 export function createApp(options = {}) {
   const app = express();
@@ -32,7 +33,7 @@ export function createApp(options = {}) {
       reportService
     });
 
-  app.use(cors({ origin: env.frontendOrigin }));
+  app.use(cors({ origin: corsOrigin }));
   app.use(express.json({ limit: "2mb" }));
 
   app.get("/health", (_request, response) => {

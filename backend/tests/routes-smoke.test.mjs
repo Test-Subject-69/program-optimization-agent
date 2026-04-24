@@ -51,6 +51,29 @@ try {
   assert.equal(health.ok, true);
   assert.equal(health.app, "program-optimization-agent");
 
+  const corsHealthResponse = await fetch(`${baseUrl}/health`, {
+    headers: { Origin: "https://program-optimization-agent-frontend-r52qhf5yt.vercel.app" }
+  });
+  assert.equal(corsHealthResponse.status, 200);
+  assert.equal(
+    corsHealthResponse.headers.get("access-control-allow-origin"),
+    "https://program-optimization-agent-frontend-r52qhf5yt.vercel.app"
+  );
+
+  const corsPreflightResponse = await fetch(`${baseUrl}/api/dashboard`, {
+    method: "OPTIONS",
+    headers: {
+      Origin: "https://program-optimization-agent-frontend-r52qhf5yt.vercel.app",
+      "Access-Control-Request-Method": "GET",
+      "Access-Control-Request-Headers": "authorization,content-type"
+    }
+  });
+  assert.equal(corsPreflightResponse.status, 204);
+  assert.equal(
+    corsPreflightResponse.headers.get("access-control-allow-origin"),
+    "https://program-optimization-agent-frontend-r52qhf5yt.vercel.app"
+  );
+
   const dashboard = await fetch(`${baseUrl}/api/dashboard`).then((response) => response.json());
   assert.equal(dashboard.summary.programCount, 6);
   assert.ok(dashboard.anomalies.length > 0);

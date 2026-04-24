@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 import { env } from "../config/env.js";
 import { forbidden, unauthorized } from "./http.js";
+import { isAllowedOrigin } from "./origins.js";
 
 const roleRank = {
   "read-only": 0,
@@ -230,7 +231,7 @@ export function requireCsrf(request, _response, next) {
   }
 
   const origin = request.headers.origin;
-  if (origin && origin !== env.frontendOrigin) {
+  if (origin && !isAllowedOrigin(origin)) {
     return next(forbidden("Origin mismatch"));
   }
 
