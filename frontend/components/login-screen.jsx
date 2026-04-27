@@ -72,54 +72,78 @@ export function LoginScreen() {
   }
 
   return (
-    <section className="auth-panel" aria-labelledby="login-title">
-      <div className="auth-copy">
-        <h1 id="login-title">Walker-Miller Program Optimization Agent</h1>
-        <p>Sign in to review program performance, track issues, and generate executive briefs.</p>
-      </div>
-
-      {!configured ? (
-        <div className="notice auth-notice" role="status">
-          Supabase Auth is not configured. Use the demo session to explore, or configure Supabase environment variables and restart.
+    <>
+      <aside className="auth-visual" aria-hidden="true">
+        <div className="auth-visual-glow" />
+        <div className="auth-visual-content">
+          <img
+            className="auth-visual-logo"
+            src="/WalkerMillerSilver.png"
+            alt=""
+          />
+          <h1 className="auth-visual-title">
+            Program<br />
+            <strong>Optimization Agent</strong>
+          </h1>
+          <p className="auth-visual-tagline">
+            Executive program performance, anomaly detection, and AI-generated briefs for Walker-Miller Energy Services.
+          </p>
         </div>
-      ) : null}
+      </aside>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <label>
-          <span>Email</span>
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => { setEmail(event.target.value); setFieldErrors((prev) => ({ ...prev, email: "" })); }}
-            autoComplete="email"
-            aria-invalid={Boolean(fieldErrors.email)}
-            disabled={mounted && (!configured || mode !== "supabase" || submitting)}
-          />
-          <FieldMessage>{fieldErrors.email}</FieldMessage>
-        </label>
-        <label>
-          <span>Password</span>
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => { setPassword(event.target.value); setFieldErrors((prev) => ({ ...prev, password: "" })); }}
-            autoComplete="current-password"
-            aria-invalid={Boolean(fieldErrors.password)}
-            disabled={mounted && (!configured || mode !== "supabase" || submitting)}
-          />
-          <FieldMessage>{fieldErrors.password}</FieldMessage>
-        </label>
-        {error ? <FieldMessage tone="error">{error}</FieldMessage> : null}
-        <button type="submit" disabled={mounted && (!configured || mode !== "supabase" || submitting || !ready)}>
-          {submitting ? "Signing in..." : "Sign in"}
-        </button>
-      </form>
+      <section className="auth-form-panel" aria-labelledby="login-title">
+        <div className="auth-form-inner">
+          <header className="auth-form-header">
+            <h2 id="login-title">Sign in to your account</h2>
+            <p>Enter your credentials to continue</p>
+          </header>
 
-      {!configured ? (
-        <button type="button" className="secondary" onClick={handleDemoStart} disabled={mounted && (!ready || submitting)}>
-          Start demo session
-        </button>
-      ) : null}
-    </section>
+          {!configured ? (
+            <div className="notice auth-notice" role="status" style={{ margin: 0 }}>
+              Supabase Auth is not configured. Use the demo session to explore, or configure Supabase environment variables and restart.
+            </div>
+          ) : null}
+
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <label>
+              <span>Email</span>
+              <input
+                type="email"
+                value={email}
+                onChange={(event) => { setEmail(event.target.value); setFieldErrors((prev) => ({ ...prev, email: "" })); }}
+                autoComplete="email"
+                aria-invalid={Boolean(fieldErrors.email)}
+                disabled={mounted && (!configured || mode !== "supabase" || submitting)}
+              />
+              <FieldMessage>{fieldErrors.email}</FieldMessage>
+            </label>
+            <label>
+              <span>Password</span>
+              <input
+                type="password"
+                value={password}
+                onChange={(event) => { setPassword(event.target.value); setFieldErrors((prev) => ({ ...prev, password: "" })); }}
+                autoComplete="current-password"
+                aria-invalid={Boolean(fieldErrors.password)}
+                disabled={mounted && (!configured || mode !== "supabase" || submitting)}
+              />
+              <FieldMessage>{fieldErrors.password}</FieldMessage>
+            </label>
+            {error ? <FieldMessage tone="error">{error}</FieldMessage> : null}
+            <button className="auth-submit" type="submit" disabled={mounted && (!configured || mode !== "supabase" || submitting || !ready)}>
+              {submitting ? "Signing in..." : "Sign in"}
+            </button>
+          </form>
+
+          {!configured ? (
+            <button type="button" className="secondary" onClick={handleDemoStart} disabled={mounted && (!ready || submitting)}>
+              Start demo session
+            </button>
+          ) : null}
+
+          <p className="form-note">Accounts are created by the Supabase project admin.</p>
+        </div>
+      </section>
+    </>
   );
 }
